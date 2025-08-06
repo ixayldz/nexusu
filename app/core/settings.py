@@ -5,12 +5,16 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    # ───── Genel ────────────────────────────────────────────────
     app_name: str = "Nexus"
     environment: str = "dev"
     log_level: str = "INFO"
-    redis_url: str = "redis://localhost:6379/0"
 
-    # ⚡ Yeni — ajan → model haritası
+    # ───── Altyapı ──────────────────────────────────────────────
+    redis_url: str = "redis://localhost:6379/0"
+    workspace_dir: str = "workspace"          # 3.3 B’de eklendi
+
+    # ───── LLM model haritası ──────────────────────────────────
     model_map: Dict[str, str] = {
         "planner": "openai-o3",
         "builder": "claude-4-sonnet",
